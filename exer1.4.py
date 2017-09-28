@@ -21,6 +21,8 @@ def generate_random_line():
 
 def compute_y_of_line(w, x):
     # w0 + w1*x + w2*y = 0
+    if w[2, 0] == 0:
+        return 0
     return -(w[0, 0] + w[1, 0] * x) / w[2, 0]
 
 
