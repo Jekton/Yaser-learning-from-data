@@ -48,10 +48,11 @@ def riemann_sum(w, delta):
     s = 0
     for x in np.arange(-1, 1, delta):
         y = compute_y_of_line(w, x)
-        if y < 0:
-            y = 0
+        if y < -1:
+            y = -1
         elif y > 1:
             y = 1
+        y -= -1
         s += y * delta
     return s
 
@@ -94,7 +95,7 @@ eta = 0.01
 delta = 0.0001
 all_error = 0
 all_step = 0
-nsimulate = 100
+nsimulate = 1000
 for i in range(nsimulate):
     f, g, nstep = simulate(N, eta, False)
     less_of_f = riemann_sum(f, delta)
@@ -104,5 +105,4 @@ for i in range(nsimulate):
     all_step += nstep
     print(i)
 print("step =", all_step / nsimulate)
-# XXX I don't know why it's wrong
 print("error =", all_error / nsimulate)
