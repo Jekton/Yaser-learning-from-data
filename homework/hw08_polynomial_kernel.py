@@ -101,7 +101,8 @@ def train_cv(X, y, val_start, val_end, C, Q):
 
 def shuffle(X, y):
     num_data = X.shape[0]
-    shuffle_indices = np.random.choice(num_data, size=num_data, replace=True)
+    shuffle_indices = np.array(range(num_data))
+    np.random.shuffle(shuffle_indices)
     return X[shuffle_indices], y[shuffle_indices]
 
 
@@ -118,13 +119,13 @@ def cross_validation(X, y, C, Q):
     return total_scores / 10
 
 
-# Problem 7~8 (but is wrong)
+# Problem 7~8
 # C = [0.0001, 0.001, 0.01, 0.1, 1]
 # Q = 2
 # d = {}
 # X, y = prepare_one_vs_one(X, y, 1, 5)
 # scores = np.zeros(len(C))
-# for i in range(500):
+# for i in range(100):
 #     selected = -1
 #     max_score = 0
 #     X, y = shuffle(X, y)
@@ -136,9 +137,9 @@ def cross_validation(X, y, C, Q):
 #             selected = c
 #     d[selected] = d.get(selected, 0) + 1
 #     print(i)
-# scores /= 500
+# scores /= 100
 # print(d)
-# print(1 - scores[0])
+# print(1 - scores)
 
 
 
